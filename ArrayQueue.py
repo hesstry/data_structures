@@ -23,6 +23,19 @@ class ArrayQueue:
     self.n = 0
 
     self.data = [None]*self.capacity
+    
+  def get(self, i):
+  """
+  parameters:
+    i(int): Index for desired element
+
+  returns:
+    self.data[i]: the element at the specified index
+
+  functionality:
+    simple get method for an element given some index
+  """
+    return self.data[i]
 
   def add(self, x):
   """
