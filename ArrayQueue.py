@@ -30,12 +30,41 @@ class ArrayQueue:
     i(int): Index for desired element
 
   returns:
-    self.data[i]: the element at the specified index
+    self.data[i]: the element at the specified index if index contains an element
+
+    None other wise
 
   functionality:
     simple get method for an element given some index
   """
-    return self.data[i]
+    if i >= 0 & i <= self.n-1:
+
+      return self.data[i]
+
+    return None
+
+  def set(self,i, x):
+    """
+    parameters:
+      i(int): Index for desired element to change
+
+      x: value to change element to
+
+    returns:
+      array[i] if set properly
+
+      None otherwise
+
+    functionality:
+      simple set method for an element given some index
+    """
+    if i >= 0 & i <= self.n-1:
+
+      self.data[i] = x
+
+      return self.data[i]
+
+    return None
 
   def add(self, x):
   """
