@@ -21,16 +21,13 @@ class ArrayStack:
 
     self.data = [None]*self.capacity
 
-    def get(self, i):
+  def get(self, i):
   """
   parameters:
     i(int): Index for desired element
-
   returns:
     self.data[i]: the element at the specified index if index contains an element
-
     None other wise
-
   functionality:
     simple get method for an element given some index
   """
@@ -41,20 +38,16 @@ class ArrayStack:
     return None
 
   def set(self,i, x):
-    """
-    parameters:
-      i(int): Index for desired element to change
-
-      x: value to change element to
-
-    returns:
-      array[i] if set properly
-
-      None otherwise
-
-    functionality:
-      simple set method for an element given some index
-    """
+  """
+  parameters:
+    i(int): Index for desired element to change
+    x: value to change element to
+  returns:
+    array[i] if set properly
+    None otherwise
+  functionality:
+    simple set method for an element given some index
+  """
     if i >= 0 & i <= self.n-1:
 
       self.data[i] = x
@@ -64,18 +57,15 @@ class ArrayStack:
     return None
 
   def push(self, x):
-    """
-    parameters:
-      x: An element to be pushed to the end of the array
-
-    returns:
-      None
-
-    Functionality:
-      Push x to the top of the stack, so a[n-1] = x
-
-      Resize the array is the capacity has been reached
-    """
+  """
+  parameters:
+    x: An element to be pushed to the end of the array
+  returns:
+    None
+  Functionality:
+    Push x to the top of the stack, so a[n-1] = x
+    Resize the array is the capacity has been reached
+  """
     if self.n == self.capacity:
 
       self.resize()
@@ -85,16 +75,15 @@ class ArrayStack:
     self.n += 1
 
   def pop(self):
-    """
-    parameters:
-      None
-
-    returns:
-      x: The value that was removed from the end of the array, x = queue[n-1]
-    
-    functionality:
-      Pops the last element of the array from the stack and returns it
-    """
+  """
+  parameters:
+    None
+  returns:
+    x: The value that was removed from the end of the array, x = queue[n-1]
+  
+  functionality:
+    Pops the last element of the array from the stack and returns it
+  """
     x = self.data[self.n - 1]
 
     self.n -= 1

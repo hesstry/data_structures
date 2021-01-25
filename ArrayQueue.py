@@ -1,5 +1,4 @@
 class ArrayQueue:
-  """Implementation of an ArrayQueue"
 
   def __init__(self, size):
   """
@@ -15,13 +14,9 @@ class ArrayQueue:
     
     data(array): the array of elements
   """
-
     self.capacity = size
-
     self.j = 0
-
     self.n = 0
-
     self.data = [None]*self.capacity
     
   def get(self, i):
@@ -44,20 +39,16 @@ class ArrayQueue:
     return None
 
   def set(self,i, x):
-    """
-    parameters:
-      i(int): Index for desired element to change
-
-      x: value to change element to
-
-    returns:
-      array[i] if set properly
-
-      None otherwise
-
-    functionality:
-      simple set method for an element given some index
-    """
+  """
+  parameters:
+    i(int): Index for desired element to change
+    x: value to change element to
+  returns:
+    array[i] if set properly
+    None otherwise
+  functionality:
+    simple set method for an element given some index
+  """
     if i >= 0 & i <= self.n-1:
 
       self.data[i] = x
@@ -129,6 +120,17 @@ class ArrayQueue:
     return x
 
   def resize(self):
+    """
+    parameters:
+      None
+
+    returns:
+      None
+
+    functionality:
+      Resizes the array to either make room for add(), or decrease room because
+      remove() was called many more times than add() and capacity >= 3*n
+    """
     
     b = ArrayQueue(2*self.n)
 
