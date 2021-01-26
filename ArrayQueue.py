@@ -51,7 +51,7 @@ class ArrayQueue:
   """
     if i >= 0 & i <= self.n-1:
 
-      self.data[i] = x
+      self.data[(self.j + i) % self.capacity] = x
 
       return self.data[(self.j + i) % self.capacity]
 
