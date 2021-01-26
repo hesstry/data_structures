@@ -131,8 +131,11 @@ class ArrayQueue:
       Resizes the array to either make room for add(), or decrease room because
       remove() was called many more times than add() and capacity >= 3*n
     """
-    
-    b = ArrayQueue(2*self.n)
+    if self.n == 0:
+      b = ArrayQueue(1)
+      
+    else:
+      b = ArrayQueue(2*self.n)
 
     for k in range(self.n):
 
