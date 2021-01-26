@@ -48,7 +48,6 @@ class DynamicArray:
           simple set method for an element given some index
         """
 
-
         if i >= 0 & i <= self.n - 1:
             self.data[i] = x
             return self.data[i]
@@ -68,7 +67,7 @@ class DynamicArray:
         Functionality:
             If self.n == capacity, then resize is called first to make room for an additional element
 
-            Adds item to list at array[i], shifts all elements right one index first to make space for x
+            shifts all elements right one index first to make space for x, adds x to list at index i
 
             n is incremented to update the number of elements in the queue
         """
@@ -95,12 +94,12 @@ class DynamicArray:
         returns:
           x: The element that was removed from the queue
 
-          None if i isn't within index boundaries
+          None: if i isn't within index boundaries
 
         Functionality:
           Removes the element in the queue corresponding to array[] and returns this value
 
-          n is deremented to update the number of elements in the array
+          n is decremented to update the number of elements in the array
 
           If the array capacity grows to be too large compared to the number of elements in the array, then
           resize() is called to free up space
@@ -137,12 +136,14 @@ class DynamicArray:
           Resizes the array to either make room for add(), or decrease room because
           remove() was called many more times than add() and capacity >= 3*n
         """
-
-        b = DynamicArray(2 * self.n)
+        if self.n == 0:
+            b = DynamicArray(1)
+            
+        else:
+            b = DynamicArray(2 * self.n)
 
         for k in range(self.n):
             b.data[k] = self.data[k]
-
             b.n += 1
 
         self.capacity = b.capacity
