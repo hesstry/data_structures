@@ -34,7 +34,7 @@ class ArrayQueue:
   """
     if i >= 0 & i <= self.n-1:
 
-      return self.data[i]
+      return self.data[(self.j + i) % self.capacity]
 
     return None
 
@@ -53,7 +53,7 @@ class ArrayQueue:
 
       self.data[i] = x
 
-      return self.data[i]
+      return self.data[(self.j + i) % self.capacity]
 
     return None
 
