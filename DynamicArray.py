@@ -80,7 +80,7 @@ class DynamicArray:
         for ind in range(self.n-1, i, -1):
             # shifts right starting at last index so overwriting of values doesn't occur
             # This can be a costly method
-            self.data[self.n] = self.data[ind]
+            self.data[ind+1] = self.data[ind]
 
         self.data[i] = x
 
