@@ -1,15 +1,16 @@
-class NodeSingly:
+class NodeDoubly:
 
     def __init__(self, val):
         self.val = val
         self.next = None
+        self.prev = None
 
 
-class SLListException(Exception):
+class DLListException(Exception):
     pass
 
 
-class SinglyLinkedList:
+class DoublyLinkedList:
 
     def __init__(self):
         """
@@ -22,12 +23,14 @@ class SinglyLinkedList:
 			self.tail(Object): the tail of the list
 
 			self.size(Int): size of the list
+
+			self.dummy(Node): dummy node to indicate ends
 		"""
 
         self.head = None
         self.tail = None
         self.size = 0
-        self.dummy = NodeSingly(None)
+        self.dummy = NodeDoubly(None)
 
     def get(self, i):
         """
@@ -42,7 +45,7 @@ class SinglyLinkedList:
 		"""
 
         if self.size == 0 or i < 0 or i >= self.size:
-            raise SLListException
+            raise DLListException
 
         node = self.head
 
@@ -56,10 +59,12 @@ class SinglyLinkedList:
         parameters:
           i(int): Index for desired element to change
           x: value to change element to
+
         returns:
           node.val if set properly
 
-          SLList exception otherwise
+          DLList exception otherwise
+
         functionality:
           simple set method for an element given some index
         """
@@ -85,15 +90,17 @@ class SinglyLinkedList:
 		"""
 
         if i < 0 or i > self.size:
-            raise SLListException
+            raise DLListException
 
-        new_node = NodeSingly(val)
+        new_node = NodeDoubly(val)
 
         if self.size == 0:
             self.head = new_node
             self.dummy.next = self.head
+            self.head.prev = self.dummy
             self.tail = new_node
             self.tail.next = self.dummy
+            self.dummy.prev = self.tail
             self.size += 1
 
             return
@@ -101,6 +108,7 @@ class SinglyLinkedList:
         if i == 0:
             new_node.next = self.head
             self.dummy.next = new_node
+            self.head.prev = self.dummy
             self.head = new_node
             self.size += 1
 
@@ -110,6 +118,7 @@ class SinglyLinkedList:
             self.tail.next = new_node
             self.tail = new_node
             self.tail.next = self.dummy
+            self.dummy.prev = self.tail
             self.size += 1
 
             return
@@ -120,7 +129,11 @@ class SinglyLinkedList:
 
         adj_node.next = new_node
 
+        new_node.prev = adj_node
+
         new_node.next = old_node
+
+        old_node.prev = new_node
 
         self.size += 1
 
@@ -137,27 +150,33 @@ class SinglyLinkedList:
         """
 
         if i < 0 or i >= self.size or self.size == 0:
-            raise SLListException
+            raise DLListException
 
         if i == 0:
             new_head = self.head.next
             removed = self.head
             self.head = new_head
             self.dummy.next = new_head
+            new_head.prev = self.dummy
             self.size -= 1
             return removed
 
         if i == self.size - 1:
-            new_tail = self.get(self.size - 1)
+            new_tail = self.tail.prev
             removed = self.tail
             self.tail = new_tail
             new_tail.next = self.dummy
+            self.dummy.prev = new_tail
             self.size -= 1
             return removed
 
         adj_node = self.get(i - 1)
 
         removed = adj_node.next
+
+        adj_node.next = removed.next
+
+        adj_node.next.prev = adj_node
 
         self.size -= 1
 
@@ -173,16 +192,15 @@ class SinglyLinkedList:
 
         return "{}".format(data)
 
-
 if __name__ == "__main__":
 
-    sll = SinglyLinkedList()
+    dll = DoublyLinkedList()
 
     for i in range(10):
-        sll.add(i, i)
+        dll.add(i, i)
 
-    print(sll)
+    print(dll)
 
     for i in range(10):
-        print(sll.remove(i).val)
-        print(sll)
+        print(dll.remove(i).val)
+        print(dll)
