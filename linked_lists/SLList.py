@@ -162,7 +162,7 @@ class SinglyLinkedList:
 
     def __str__(self):
         if self.size == 0:
-            return None
+            return "Empty"
 
         data = [self.get(i).val for i in range(self.size)]
 
