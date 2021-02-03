@@ -106,19 +106,21 @@ class DoublyLinkedList:
             return
 
         if i == 0:
-            new_node.next = self.head
-            self.dummy.next = new_node
+            new_node.next = self.head # make new node point to current head
+            self.head.prev = new_node # make current head.prev point to new head
+            self.dummy.next = new_node # make self.dummy point to new_node
+            self.head = new_node # make new_node self.head
             self.head.prev = self.dummy
-            self.head = new_node
             self.size += 1
 
             return
 
         if i == self.size:
-            self.tail.next = new_node
-            self.tail = new_node
-            self.tail.next = self.dummy
-            self.dummy.prev = self.tail
+            self.tail.next = new_node # make current tail point to new tail
+            new_node.prev = self.tail # make new tail prev point to current tail
+            self.tail = new_node # assign new node as tail
+            self.tail.next = self.dummy # point new tail to self.dummy
+            self.dummy.prev = self.tail # point dummy.prev to new tail
             self.size += 1
 
             return
@@ -165,7 +167,7 @@ class DoublyLinkedList:
             new_tail = self.tail.prev
             removed = self.tail
             self.tail = new_tail
-            new_tail.next = self.dummy
+            self.tail.next = self.dummy
             self.dummy.prev = new_tail
             self.size -= 1
             return removed
