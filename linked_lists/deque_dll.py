@@ -18,7 +18,6 @@ class DequeDLL:
         return self.DLL.remove(self.DLL.size-1)
 
     def __str__(self):
-
         return self.DLL.__str__()
 
 if __name__ == "__main__":

@@ -6,13 +6,9 @@ class StackSLL:
 
 		self.sll = SinglyLinkedList()
 
-	def head(self):
+	def top(self):
 
 		return self.sll.head
-
-	def tail(self):
-
-		return self.sll.tail
 
 	def push(self, val):
 
