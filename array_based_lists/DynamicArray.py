@@ -1,3 +1,6 @@
+class InvalidIndexException(Exception):
+    pass
+
 class DynamicArray:
 
     def __init__(self, size):
@@ -34,7 +37,7 @@ class DynamicArray:
         if i >= 0 & i <= self.n - 1:
             return self.data[i]
 
-        return None
+        raise InvalidIndexException
 
     def set(self, i, x):
         """
@@ -43,7 +46,7 @@ class DynamicArray:
           x: value to change element to
         returns:
           array[i] if set properly
-          None otherwise
+
         functionality:
           simple set method for an element given some index
         """
@@ -52,7 +55,7 @@ class DynamicArray:
             self.data[i] = x
             return self.data[i]
 
-        return None
+        raise InvalidIndexException
 
     def add(self, i, x):
         """
@@ -62,7 +65,6 @@ class DynamicArray:
 
         returns:
             array[i] if index within proper bounds
-            None otherwise
 
         Functionality:
             If self.n == capacity, then resize is called first to make room for an additional element
@@ -72,7 +74,7 @@ class DynamicArray:
             n is incremented to update the number of elements in the queue
         """
         if i < 0 or i >= self.n+1:
-            return None
+            raise InvalidIndexException
 
         if self.n == self.capacity:
             self.resize()
@@ -104,8 +106,7 @@ class DynamicArray:
           If the array capacity grows to be too large compared to the number of elements in the array, then
           resize() is called to free up space
 
-            the relation "capacity >= 3*n" allows for a maximum sequential remove() depth of n/2 elements, allowing
-            for a downsize that results in new capacity values divisible by 2 until capacity == 1 is reached
+            the relation "capacity >= 3*n" allows for a maximum sequential remove() depth of n/2 elements
         """
         if i < 0 or i >= self.n + 1:
             return None
@@ -118,6 +119,7 @@ class DynamicArray:
 
         self.n -= 1
 
+        # resize condition if too many open slots in the array, to open up memory
         if self.capacity >= 3 * self.n:
             self.resize()
 
@@ -147,9 +149,7 @@ class DynamicArray:
             b.n += 1
 
         self.capacity = b.capacity
-
         self.n = b.n
-
         self.data = b.data
 
 

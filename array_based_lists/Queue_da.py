@@ -1,6 +1,5 @@
 from DynamicArray import *
 
-
 class QueueDA:
 
     def __init__(self):
